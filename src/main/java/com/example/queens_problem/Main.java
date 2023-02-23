@@ -1,8 +1,10 @@
 package com.example.queens_problem;
 
+import com.example.queens_problem.logic.QueensProblemDFS;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,6 +18,8 @@ public class Main extends Application {
         stage.setTitle("Queens problem");
         stage.setResizable(false);
         stage.setScene(scene);
+        Canvas chess = (Canvas) scene.lookup("#chess");
+        Chess.drawChess(4, chess);
         stage.show();
     }
 
