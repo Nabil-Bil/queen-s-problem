@@ -7,28 +7,50 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.queens_problem.HomeController">
-    <TextField fx:id="sizeTextField" layoutX="971.0" layoutY="388.0" prefHeight="25.0" prefWidth="171.0" promptText="Entrez la taille de l'echequier" text="4" />
-    <Button fx:id="sizeButton" layoutX="1029.0" layoutY="435.0" mnemonicParsing="false" onAction="#onSizeButtonClick" text="Run" />
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.queens_problem.HomeController">
+   <Ellipse fx:id="circle" fill="#1f93ff00" layoutX="835.0" layoutY="155.0" radiusX="64.0" radiusY="33.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" />
+    <TextField fx:id="sizeTextField" layoutX="768.0" layoutY="460.0" prefHeight="25.0" prefWidth="171.0" promptText="Entrez la taille de l'echequier" text="4" />
+    <Button fx:id="runButton" layoutX="835.0" layoutY="518.0" mnemonicParsing="false" onAction="#onRunButtonClick" text="Run" />
     <Label fx:id="label" layoutX="1031.0" layoutY="485.0" />
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="650.0" layoutX="8.0" layoutY="20.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" width="650.0" />
     <Canvas fx:id="chess" height="650.0" layoutX="8.0" layoutY="20.0" width="650.0" />
-   <ImageView fx:id="next" fitHeight="64.0" fitWidth="60.0" layoutX="565.0" layoutY="722.0" onMouseClicked="#onNextClick" pickOnBounds="true" preserveRatio="true">
+   <ImageView fx:id="next" fitHeight="64.0" fitWidth="60.0" layoutX="598.0" layoutY="695.0" onMouseClicked="#onNextClick" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@controlright.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="previous" fitHeight="55.0" fitWidth="76.0" layoutX="96.0" layoutY="722.0" onMouseClicked="#onPreviousClick" pickOnBounds="true" preserveRatio="true">
+   <ImageView fx:id="previous" fitHeight="55.0" fitWidth="76.0" layoutX="14.0" layoutY="695.0" onMouseClicked="#onPreviousClick" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@left.png" />
       </image>
    </ImageView>
-   <Label fx:id="nSolutions" layoutX="348.0" layoutY="725.0" text="/">
+   <Label fx:id="nSolutions" layoutX="327.0" layoutY="698.0" text="/">
       <font>
          <Font size="33.0" />
+      </font>
+   </Label>
+   <Label fx:id="dfs" layoutX="796.0" layoutY="128.0" onMouseClicked="#chooseAlgorithm" text="DFS">
+      <font>
+         <Font name="Bauhaus 93" size="48.0" />
+      </font>
+   </Label>
+   <Label fx:id="bfs" layoutX="800.0" layoutY="253.0" onMouseClicked="#chooseAlgorithm" text="BFS">
+      <font>
+         <Font name="Bauhaus 93" size="48.0" />
+      </font>
+   </Label>
+   <Label fx:id="dfs1" layoutX="712.0" layoutY="50.0" onMouseClicked="#chooseAlgorithm" text="Choose Algorithm">
+      <font>
+         <Font name="Bauhaus 93" size="36.0" />
+      </font>
+   </Label>
+   <Label fx:id="time" layoutX="757.0" layoutY="695.0" text="0.00(S)" textFill="#969696">
+      <font>
+         <Font name="Bauhaus 93" size="48.0" />
       </font>
    </Label>
 </Pane>

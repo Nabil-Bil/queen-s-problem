@@ -1,18 +1,24 @@
 package com.example.queens_problem;
 
-import com.example.queens_problem.logic.QueensProblemDFS;
+import com.example.queens_problem.logic.NQueens;
+import com.example.queens_problem.logic.NQueensBFS;
+import com.example.queens_problem.logic.NQueensDFS;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Ellipse;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class HomeController {
@@ -25,7 +31,7 @@ public class HomeController {
     private Label label;
 
     @FXML
-    private Button sizeButton;
+    private Button runButton;
 
     @FXML
     private TextField sizeTextField;
@@ -39,27 +45,52 @@ public class HomeController {
     @FXML
     private Label nSolutions;
 
+
+    @FXML
+    private Label bfs;
+
+    @FXML
+    private Label dfs;
+
+    @FXML
+    private  Label time;
+
     int index;
     int numberOfSolution;
-    QueensProblemDFS queensProblemDFS;
+    NQueens nQueens;
     List<boolean[][]> solutions;
     int chessSize;
 
     @FXML
-    void onSizeButtonClick(ActionEvent event) {
-        GraphicsContext gc = chess.getGraphicsContext2D();
-        int chessSize = Integer.parseInt(sizeTextField.getText());
-        queensProblemDFS = new QueensProblemDFS(chessSize);
+    private Ellipse circle;
 
 
+    Algorithm selectedAlgorithm=Algorithm.DFS;
+
+
+    @FXML
+    void onRunButtonClick(ActionEvent event) {
+        chessSize = Integer.parseInt(sizeTextField.getText());
+        if(selectedAlgorithm==Algorithm.DFS){
+            nQueens = new NQueensDFS(chessSize);
+
+
+        } else if (selectedAlgorithm==Algorithm.BFS) {
+            nQueens = new NQueensBFS(chessSize);
+
+
+        }
         Chess.drawChess(chessSize, chess);
-        solutions = new ArrayList<>();
-        queensProblemDFS.solve(0, solutions);
+        double begin=System.currentTimeMillis();
+        solutions=nQueens.solve(chessSize);
+        double end=System.currentTimeMillis();
+        double time=(end-begin)/1000;
+        this.time.setText(String.format("%.2f(S)",time));
         numberOfSolution = solutions.size();
         index = 1;
         nSolutions.setText(index + "/" + solutions.size());
 
-        Chess.drawQueens(queensProblemDFS, chessSize, chess, solutions, index);
+        Chess.drawQueens(nQueens, chessSize, chess, solutions, index);
     }
 
     @FXML
@@ -67,7 +98,9 @@ public class HomeController {
         if (index > 1 && index <= numberOfSolution) {
             index--;
             nSolutions.setText(index + "/" + numberOfSolution);
-            Chess.drawQueens(queensProblemDFS, chessSize, chess, solutions, index);
+            Chess.clear(chess);
+            Chess.drawChess(chessSize,chess);
+            Chess.drawQueens(nQueens, chessSize, chess, solutions, index);
         }
 
 
@@ -78,10 +111,29 @@ public class HomeController {
         if (index >= 1 && index < numberOfSolution) {
             index++;
             nSolutions.setText(index + "/" + numberOfSolution);
-
-            Chess.drawQueens(queensProblemDFS, chessSize, chess, solutions, index);
+            Chess.clear(chess);
+            Chess.drawChess(chessSize,chess);
+            Chess.drawQueens(nQueens, chessSize, chess, solutions, index);
         }
     }
+    @FXML
+    void chooseAlgorithm(MouseEvent event) {
+        Control control=((Control)event.getSource());
+        String id=control.getId();
+        double x=control.getLayoutX()+control.getWidth()/2;
+        double y=control.getLayoutY()+ control.getHeight()/2;
 
+        if(Objects.equals(id, "dfs")){
+            selectedAlgorithm=Algorithm.DFS;
+            circle.setLayoutX(x);
+            circle.setLayoutY(y);
+
+        } else if (Objects.equals(id, "bfs")) {
+            selectedAlgorithm=Algorithm.BFS;
+            circle.setLayoutX(x);
+            circle.setLayoutY(y);
+
+        }
+    }
 
 }

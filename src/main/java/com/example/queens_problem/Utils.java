@@ -5,6 +5,11 @@ enum ChessColor {
     Black
 }
 
+enum Algorithm{
+    DFS,
+    BFS
+}
+
 class Point {
     private double x;
     private double y;

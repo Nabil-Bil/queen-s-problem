@@ -1,6 +1,7 @@
 package com.example.queens_problem;
 
-import com.example.queens_problem.logic.QueensProblemDFS;
+import com.example.queens_problem.logic.NQueens;
+import com.example.queens_problem.logic.NQueensDFS;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -45,14 +46,15 @@ public class Chess {
         }
     }
 
-    static void drawQueens(QueensProblemDFS queensProblemDFS, int n, Canvas chess, List<boolean[][]> solutions, int index) {
+    static void drawQueens(NQueens NQueensDFS, int n, Canvas chess, List<boolean[][]> solutions, int index) {
         double rectangle_size = chess.getWidth() / n;
         GraphicsContext gc = chess.getGraphicsContext2D();
-        queensProblemDFS.setBoard(solutions.get(index - 1));
-        boolean[][] board = queensProblemDFS.getBoard();
-        queensProblemDFS.printSolution(board);
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
+        NQueensDFS.setBoard(solutions.get(index - 1));
+        boolean[][] board = NQueensDFS.getBoard();
+        int i;
+        int j;
+        for (i = 0; i < n; i++) {
+            for (j = 0; j < n; j++) {
                 Point rectangle_position = new Point(rectangle_size * j, rectangle_size * i);
                 Point centerRect = getCenterRect(rectangle_position, rectangle_size);
                 if (board[i][j]) {
@@ -79,6 +81,10 @@ public class Chess {
     static private Point getCenterRect(Point point, double size) {
         Point center = new Point(point.getX() + size / 4, point.getY() + size / 4);
         return center;
+    }
+
+    static public void clear(Canvas chess){
+        chess.getGraphicsContext2D().clearRect(0,0,chess.getWidth(),chess.getHeight());
     }
 
     static private void drawQueen(GraphicsContext gc, ChessColor color, Point position, double size) {

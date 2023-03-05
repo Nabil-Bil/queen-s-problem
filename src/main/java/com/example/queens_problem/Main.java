@@ -1,6 +1,5 @@
 package com.example.queens_problem;
 
-import com.example.queens_problem.logic.QueensProblemDFS;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,7 +12,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("home.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1280, 800);
+        Scene scene = new Scene(fxmlLoader.load(), 1020, 768);
 
         stage.setTitle("Queens problem");
         stage.setResizable(false);
