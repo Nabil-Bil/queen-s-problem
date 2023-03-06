@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.canvas.Canvas?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -13,9 +13,17 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.queens_problem.HomeController">
    <Ellipse fx:id="circle" fill="#1f93ff00" layoutX="835.0" layoutY="155.0" radiusX="64.0" radiusY="33.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" />
-    <TextField fx:id="sizeTextField" layoutX="768.0" layoutY="460.0" prefHeight="25.0" prefWidth="171.0" promptText="Entrez la taille de l'echequier" text="4" />
-    <Button fx:id="runButton" layoutX="835.0" layoutY="518.0" mnemonicParsing="false" onAction="#onRunButtonClick" text="Run" />
-    <Label fx:id="label" layoutX="1031.0" layoutY="485.0" />
+    <TextField fx:id="sizeTextField" layoutX="693.0" layoutY="460.0" prefHeight="25.0" prefWidth="282.0" promptText="Entrez la taille de l'echequier" text="4">
+      <font>
+         <Font size="18.0" />
+      </font></TextField>
+    <Label fx:id="runButton" layoutX="795.0" layoutY="544.0" onMouseClicked="#onRunButtonClick" text="Run">
+      <font>
+         <Font name="Bauhaus 93" size="48.0" />
+      </font>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor></Label>
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="650.0" layoutX="8.0" layoutY="20.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" width="650.0" />
     <Canvas fx:id="chess" height="650.0" layoutX="8.0" layoutY="20.0" width="650.0" />
    <ImageView fx:id="next" fitHeight="64.0" fitWidth="60.0" layoutX="598.0" layoutY="695.0" onMouseClicked="#onNextClick" pickOnBounds="true" preserveRatio="true">
@@ -37,11 +45,17 @@
       <font>
          <Font name="Bauhaus 93" size="48.0" />
       </font>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
    </Label>
    <Label fx:id="bfs" layoutX="800.0" layoutY="253.0" onMouseClicked="#chooseAlgorithm" text="BFS">
       <font>
          <Font name="Bauhaus 93" size="48.0" />
       </font>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
    </Label>
    <Label fx:id="dfs1" layoutX="712.0" layoutY="50.0" onMouseClicked="#chooseAlgorithm" text="Choose Algorithm">
       <font>
@@ -51,6 +65,11 @@
    <Label fx:id="time" layoutX="757.0" layoutY="695.0" text="0.00(S)" textFill="#969696">
       <font>
          <Font name="Bauhaus 93" size="48.0" />
+      </font>
+   </Label>
+   <Label fx:id="error" layoutX="693.0" layoutY="513.0" textFill="RED">
+      <font>
+         <Font size="18.0" />
       </font>
    </Label>
 </Pane>

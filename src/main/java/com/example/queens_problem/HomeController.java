@@ -31,7 +31,7 @@ public class HomeController {
     private Label label;
 
     @FXML
-    private Button runButton;
+    private Label runButton;
 
     @FXML
     private TextField sizeTextField;
@@ -55,6 +55,9 @@ public class HomeController {
     @FXML
     private  Label time;
 
+    @FXML
+    private Label error;
+
     int index;
     int numberOfSolution;
     NQueens nQueens;
@@ -69,8 +72,27 @@ public class HomeController {
 
 
     @FXML
-    void onRunButtonClick(ActionEvent event) {
-        chessSize = Integer.parseInt(sizeTextField.getText());
+    void onRunButtonClick(MouseEvent event) {
+        try {
+            chessSize = Integer.parseInt(sizeTextField.getText());
+
+        }catch (Exception e){
+            error.setText("Enter a valid number");
+            sizeTextField.setStyle("-fx-text-box-border: #B22222; -fx-focus-color: #B22222;");
+
+            return;
+        }
+
+        if(chessSize<=3){
+            error.setText("Chess size must be greater than 3");
+            sizeTextField.setStyle("-fx-text-box-border: #B22222; -fx-focus-color: #B22222;");
+            return;
+
+        }else{
+            error.setText("");
+            sizeTextField.setStyle("");
+
+        }
         if(selectedAlgorithm==Algorithm.DFS){
             nQueens = new NQueensDFS(chessSize);
 
