@@ -30,7 +30,6 @@ public class NQueensDFS extends NQueens {
                         open.push(new Node(new_board,c+1));
                     }
                 }
-
             }
         }
         return solutions;

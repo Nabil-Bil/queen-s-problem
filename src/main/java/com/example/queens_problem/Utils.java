@@ -7,7 +7,8 @@ enum ChessColor {
 
 enum Algorithm{
     DFS,
-    BFS
+    BFS,
+    MCV
 }
 
 class Point {

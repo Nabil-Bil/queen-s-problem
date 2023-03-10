@@ -3,6 +3,7 @@ package com.example.queens_problem;
 import com.example.queens_problem.logic.NQueens;
 import com.example.queens_problem.logic.NQueensBFS;
 import com.example.queens_problem.logic.NQueensDFS;
+import com.example.queens_problem.logic.NQueensMCV;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -67,6 +68,9 @@ public class HomeController {
     @FXML
     private Ellipse circle;
 
+    @FXML
+    private Label mcv;
+
 
     Algorithm selectedAlgorithm=Algorithm.DFS;
 
@@ -99,8 +103,8 @@ public class HomeController {
 
         } else if (selectedAlgorithm==Algorithm.BFS) {
             nQueens = new NQueensBFS(chessSize);
-
-
+        }else if (selectedAlgorithm==Algorithm.MCV){
+            nQueens=new NQueensMCV(chessSize);
         }
         Chess.drawChess(chessSize, chess);
         double begin=System.currentTimeMillis();
@@ -147,15 +151,17 @@ public class HomeController {
 
         if(Objects.equals(id, "dfs")){
             selectedAlgorithm=Algorithm.DFS;
-            circle.setLayoutX(x);
-            circle.setLayoutY(y);
+
 
         } else if (Objects.equals(id, "bfs")) {
             selectedAlgorithm=Algorithm.BFS;
-            circle.setLayoutX(x);
-            circle.setLayoutY(y);
 
+
+        }else if (Objects.equals(id,"mcv")){
+            selectedAlgorithm=Algorithm.MCV;
         }
+        circle.setLayoutX(x);
+        circle.setLayoutY(y);
     }
 
 }

@@ -51,4 +51,5 @@ public abstract class NQueens {
 
     public abstract List<boolean[][]> solve(int n);
 
+
 }

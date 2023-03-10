@@ -49,7 +49,7 @@
          <Cursor fx:constant="HAND" />
       </cursor>
    </Label>
-   <Label fx:id="bfs" layoutX="800.0" layoutY="253.0" onMouseClicked="#chooseAlgorithm" text="BFS">
+   <Label fx:id="bfs" layoutX="795.0" layoutY="216.0" onMouseClicked="#chooseAlgorithm" text="BFS">
       <font>
          <Font name="Bauhaus 93" size="48.0" />
       </font>
@@ -71,5 +71,13 @@
       <font>
          <Font size="18.0" />
       </font>
+   </Label>
+   <Label fx:id="mcv" layoutX="795.0" layoutY="291.0" onMouseClicked="#chooseAlgorithm" text="MCV">
+      <font>
+         <Font name="Bauhaus 93" size="48.0" />
+      </font>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
    </Label>
 </Pane>
