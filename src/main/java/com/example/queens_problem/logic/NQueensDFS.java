@@ -11,8 +11,7 @@ public class NQueensDFS extends NQueens {
     // Check if it is safe to place a queen at position (row, col)
 
 
-    public List<boolean[][]> solve(int n) {
-        ArrayList<boolean[][]> solutions = new ArrayList<>();
+    public void solve(int n) {
         Stack<Node> open = new Stack<>();
         boolean[][] initial_board = new boolean[n][n];
         open.push(new Node(initial_board,0));
@@ -21,7 +20,8 @@ public class NQueensDFS extends NQueens {
             int c=node.depth;
             boolean[][] board=node.state;
             if (c == n) {
-                solutions.add(board);
+                this.board=board;
+                return;
             } else {
                 for (int row = n-1; row >=0 ; row--) {
                     if (isSafe(board, row, c, n)) {
@@ -32,7 +32,6 @@ public class NQueensDFS extends NQueens {
                 }
             }
         }
-        return solutions;
     }
 
 

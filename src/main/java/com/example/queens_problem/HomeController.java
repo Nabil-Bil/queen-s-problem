@@ -37,14 +37,6 @@ public class HomeController {
     @FXML
     private TextField sizeTextField;
 
-    @FXML
-    private ImageView next;
-
-    @FXML
-    private ImageView previous;
-
-    @FXML
-    private Label nSolutions;
 
 
     @FXML
@@ -59,10 +51,7 @@ public class HomeController {
     @FXML
     private Label error;
 
-    int index;
-    int numberOfSolution;
     NQueens nQueens;
-    List<boolean[][]> solutions;
     int chessSize;
 
     @FXML
@@ -108,40 +97,14 @@ public class HomeController {
         }
         Chess.drawChess(chessSize, chess);
         double begin=System.currentTimeMillis();
-        solutions=nQueens.solve(chessSize);
+        nQueens.solve(chessSize);
         double end=System.currentTimeMillis();
         double time=(end-begin)/1000;
         this.time.setText(String.format("%.2f(S)",time));
-        numberOfSolution = solutions.size();
-        index = 1;
-        nSolutions.setText(index + "/" + solutions.size());
 
-        Chess.drawQueens(nQueens, chessSize, chess, solutions, index);
+        Chess.drawQueens(nQueens, chessSize, chess);
     }
 
-    @FXML
-    void onPreviousClick(MouseEvent event) {
-        if (index > 1 && index <= numberOfSolution) {
-            index--;
-            nSolutions.setText(index + "/" + numberOfSolution);
-            Chess.clear(chess);
-            Chess.drawChess(chessSize,chess);
-            Chess.drawQueens(nQueens, chessSize, chess, solutions, index);
-        }
-
-
-    }
-
-    @FXML
-    void onNextClick(MouseEvent event) {
-        if (index >= 1 && index < numberOfSolution) {
-            index++;
-            nSolutions.setText(index + "/" + numberOfSolution);
-            Chess.clear(chess);
-            Chess.drawChess(chessSize,chess);
-            Chess.drawQueens(nQueens, chessSize, chess, solutions, index);
-        }
-    }
     @FXML
     void chooseAlgorithm(MouseEvent event) {
         Control control=((Control)event.getSource());

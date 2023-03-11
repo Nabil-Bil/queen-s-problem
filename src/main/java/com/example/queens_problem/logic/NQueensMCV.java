@@ -33,8 +33,7 @@ public class NQueensMCV extends NQueens {
     }
 
     @Override
-    public List<boolean[][]> solve(int n) {
-        ArrayList<boolean[][]> solutions = new ArrayList<>();
+    public void solve(int n) {
         PriorityQueue<Node> open = new PriorityQueue<>(new NodeComparator());
         boolean[][] initial_board = new boolean[n][n];
         open.offer(new Node(initial_board,0,0));
@@ -43,8 +42,8 @@ public class NQueensMCV extends NQueens {
             int c=node.depth;
             boolean[][] board=node.state;
             if (c == n) {
-                solutions.add(board);
-                break;
+                this.board=board;
+                return;
             } else {
                 for (int row = n-1; row >=0 ; row--) {
                     if (isSafe(board, row, c, n)) {
@@ -55,6 +54,5 @@ public class NQueensMCV extends NQueens {
                 }
             }
         }
-        return solutions;
     }
 }

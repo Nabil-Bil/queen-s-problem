@@ -46,10 +46,9 @@ public class Chess {
         }
     }
 
-    static void drawQueens(NQueens NQueensDFS, int n, Canvas chess, List<boolean[][]> solutions, int index) {
+    static void drawQueens(NQueens NQueensDFS, int n, Canvas chess) {
         double rectangle_size = chess.getWidth() / n;
         GraphicsContext gc = chess.getGraphicsContext2D();
-        NQueensDFS.setBoard(solutions.get(index - 1));
         boolean[][] board = NQueensDFS.getBoard();
         int i;
         int j;

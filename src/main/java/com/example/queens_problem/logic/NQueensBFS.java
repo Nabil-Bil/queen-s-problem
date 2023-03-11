@@ -6,34 +6,36 @@ import java.util.Queue;
 
 public class NQueensBFS extends NQueens {
 
+
     public NQueensBFS(int n) {
         this.n = n;
         board = new boolean[n][n];
     }
 
 
-    public List<boolean[][]> solve(int n) {
-        List<boolean[][]> solutions = new LinkedList<>();
+    public void solve(int n) {
         Queue<Node> open = new LinkedList<>();
         boolean[][] initial_board = new boolean[n][n];
-        open.offer(new Node(initial_board,0));
+        open.offer(new Node(initial_board, 0));
         while (!open.isEmpty()) {
-            Node node= open.poll();
-            boolean[][]board=node.state;
-            int c=node.depth;
+            Node node = open.poll();
+            boolean[][] board = node.state;
+            int c = node.depth;
             if (c == n) {
-                solutions.add(board);
+                this.board=board;
+                return ;
             } else {
                 for (int row = 0; row < n; row++) {
                     if (isSafe(board, row, c, n)) {
-                        boolean[][] new_board = copyBoard(board,n);
+                        boolean[][] new_board = copyBoard(board, n);
                         new_board[row][c] = true;
-                        open.offer(new Node(new_board,c+1));
+                        open.offer(new Node(new_board, c + 1));
                     }
                 }
             }
         }
-        return solutions;
     }
+
+
 }
 

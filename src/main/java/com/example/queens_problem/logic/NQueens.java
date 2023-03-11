@@ -49,7 +49,7 @@ public abstract class NQueens {
         return board;
     }
 
-    public abstract List<boolean[][]> solve(int n);
+    public abstract void solve(int n);
 
 
 }
