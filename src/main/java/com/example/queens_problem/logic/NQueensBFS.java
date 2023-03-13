@@ -12,17 +12,17 @@ public class NQueensBFS extends NQueens {
 
     protected Result solve() {
         Queue<Node> open = new LinkedList<>();
-        LinkedList<Node> closed=new LinkedList<>();
+        int developedNodes=0;
         boolean[][] initial_board = new boolean[n][n];
         open.offer(new Node(initial_board, 0));
         while (!open.isEmpty()) {
             Node node = open.poll();
-            closed.push(node);
+             developedNodes++;
             boolean[][] board = node.state;
             int c = node.depth;
             if (c == n) {
                 if(isSafe(board)){
-                    return new Result(open.size()+ closed.size(),closed.size(),board);
+                    return new Result(open.size()+ developedNodes,developedNodes,board);
                 }
             } else {
                 for (int row = 0; row < n; row++) {
@@ -32,7 +32,7 @@ public class NQueensBFS extends NQueens {
                 }
             }
         }
-        return new Result(closed.size(),closed.size(),null);
+        return new Result(developedNodes,developedNodes,null);
     }
 
 
