@@ -1,6 +1,8 @@
 package com.example.queens_problem.logic;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public abstract class NQueens {
     int n;
@@ -8,38 +10,78 @@ public abstract class NQueens {
         this.n=n;
     }
 
-    protected int evaluate(boolean[][] board) {
+    protected static int evaluate(boolean[][] board) {
         int count = 0;
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (board[i][j]) {
-                    for (int k = 0; k < n; k++) {
-                        if (board[i][k] && k != j) {
-                            count++;
-                            break;
+        int i,j;
+        Queue<Queen> counted = new LinkedList<>();
+        for(int col = 0; col<4; col++)
+        {
+            for(int row = 0; row<4; row++)
+            {
+                if(board[row][col])
+                {
+                    for(i=col+1; i<4; i++)
+                    {
+                        if(board[row][i])
+                        {
+                            if(!isCounted(counted,row,i))
+                            {
+                                System.out.println("Col");
+                                count ++;
+                                counted.add(new Queen(row,i));
+                                break;
+                            }
                         }
-                        if (board[k][j] && k != i) {
-                            count++;
-                            break;
+                    }
+                    for(i = row-1,j = col+1; i>0 && j<4;i--,j++)
+                    {
+                        if(board[i][j])
+                        {
+                            //si la reine n'a pas déja été compté
+                            if(!isCounted(counted,i,j))
+                            {
+                                System.out.println("Diag sup");
+                                count ++;
+                                counted.add(new Queen(i,j));
+                                break;
+                            }
                         }
-                        int r = i - k;
-                        int c = j - k;
-                        if (r >= 0 && c >= 0 && board[r][c] && r != i) {
-                            count++;
-                            break;
-                        }
-                        r = i + k;
-                        c = j - k;
-                        if (r >= 0 && r < n && c >= 0 && c < n && board[r][c] && r != i && c != j) {
-                            count++;
-                            break;
+                    }
+                    for(i = row+1,j = col+1; i<4 && j<4;i++,j++)
+                    {
+                        if(board[i][j])
+                        {
+                            //si la reine n'a pas déja été compté
+                            if(!isCounted(counted,i,j))
+                            {
+                                System.out.println("Diag inf");
+                                count ++;
+                                counted.add(new Queen(i,j));
+                                break;
+                            }
                         }
                     }
                 }
             }
         }
+        for (Queen c : counted)
+        {
+            System.out.println(c);
+        }
+        if(count!=0)
+        {
+            count ++;
+        }
         return count;
+    }
+    protected static boolean isCounted(Queue<Queen> counted, int row , int col) {
+        for(Queen c : counted)
+        {
+            if (c.row == row && c.col == col){
+                return true;
+            }
+        }
+        return false;
     }
     protected boolean isSafe(boolean[][] board) {
         return  evaluate(board)==0;
