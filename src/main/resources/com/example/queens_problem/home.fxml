@@ -45,7 +45,7 @@
          <Font name="Bauhaus 93" size="30.0" />
       </font>
    </Label>
-   <Label fx:id="time" layoutX="846.0" layoutY="689.0" text="0.00(S)" textFill="#969696">
+   <Label fx:id="time" layoutX="886.0" layoutY="622.0" text="0.00(S)" textFill="#969696">
       <font>
          <Font name="Bauhaus 93" size="30.0" />
       </font>
@@ -62,5 +62,30 @@
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor>
+   </Label>
+   <Label layoutX="717.0" layoutY="581.0" text="Developed Node:">
+      <font>
+         <Font name="Bauhaus 93" size="18.0" />
+      </font>
+   </Label>
+   <Label layoutX="721.0" layoutY="530.0" text="Generated Node:">
+      <font>
+         <Font name="Bauhaus 93" size="18.0" />
+      </font>
+   </Label>
+   <Label fx:id="generatedNode" layoutX="886.0" layoutY="523.0" text="0" textFill="#969696">
+      <font>
+         <Font name="Bauhaus 93" size="30.0" />
+      </font>
+   </Label>
+   <Label fx:id="developedNode" layoutX="889.0" layoutY="574.0" text="0" textFill="#969696">
+      <font>
+         <Font name="Bauhaus 93" size="30.0" />
+      </font>
+   </Label>
+   <Label layoutX="721.0" layoutY="629.0" text="Execution Time:">
+      <font>
+         <Font name="Bauhaus 93" size="18.0" />
+      </font>
    </Label>
 </Pane>

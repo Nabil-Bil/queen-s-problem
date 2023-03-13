@@ -1,9 +1,6 @@
 package com.example.queens_problem;
 
-import com.example.queens_problem.logic.NQueens;
-import com.example.queens_problem.logic.NQueensBFS;
-import com.example.queens_problem.logic.NQueensDFS;
-import com.example.queens_problem.logic.NQueensMCV;
+import com.example.queens_problem.logic.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -60,6 +57,12 @@ public class HomeController {
     @FXML
     private Label mcv;
 
+    @FXML
+    private Label developedNode;
+
+    @FXML
+    private Label generatedNode;
+
 
     Algorithm selectedAlgorithm=Algorithm.DFS;
 
@@ -96,13 +99,12 @@ public class HomeController {
             nQueens=new NQueensMCV(chessSize);
         }
         Chess.drawChess(chessSize, chess);
-        double begin=System.currentTimeMillis();
-        nQueens.solve(chessSize);
-        double end=System.currentTimeMillis();
-        double time=(end-begin)/1000;
-        this.time.setText(String.format("%.2f(S)",time));
+        Result result=nQueens.solveAndGetResult();
+        this.time.setText(String.format("%.2f(S)",result.executionTime));
+        this.generatedNode.setText(String.valueOf(result.generatedNodes));
+        this.developedNode.setText(String.valueOf(result.developedNodes));
 
-        Chess.drawQueens(nQueens, chessSize, chess);
+        Chess.drawQueens(result.solution, chessSize, chess);
     }
 
     @FXML

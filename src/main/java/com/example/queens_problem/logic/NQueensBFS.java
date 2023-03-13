@@ -1,39 +1,38 @@
 package com.example.queens_problem.logic;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 public class NQueensBFS extends NQueens {
 
 
     public NQueensBFS(int n) {
-        this.n = n;
-        board = new boolean[n][n];
+        super(n);
     }
 
-
-    public void solve(int n) {
+    protected Result solve() {
         Queue<Node> open = new LinkedList<>();
+        LinkedList<Node> closed=new LinkedList<>();
         boolean[][] initial_board = new boolean[n][n];
         open.offer(new Node(initial_board, 0));
         while (!open.isEmpty()) {
             Node node = open.poll();
+            closed.push(node);
             boolean[][] board = node.state;
             int c = node.depth;
             if (c == n) {
-                this.board=board;
-                return ;
+                if(isSafe(board)){
+                    return new Result(open.size()+ closed.size(),closed.size(),board);
+                }
             } else {
                 for (int row = 0; row < n; row++) {
-                    if (isSafe(board, row, c, n)) {
-                        boolean[][] new_board = copyBoard(board, n);
+                        boolean[][] new_board = copyBoard(board);
                         new_board[row][c] = true;
                         open.offer(new Node(new_board, c + 1));
-                    }
                 }
             }
         }
+        return new Result(closed.size(),closed.size(),null);
     }
 
 

@@ -2,6 +2,7 @@ package com.example.queens_problem;
 
 import com.example.queens_problem.logic.NQueens;
 import com.example.queens_problem.logic.NQueensDFS;
+import com.example.queens_problem.logic.Result;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -46,10 +47,9 @@ public class Chess {
         }
     }
 
-    static void drawQueens(NQueens NQueensDFS, int n, Canvas chess) {
+    static void drawQueens(boolean[][] board, int n, Canvas chess) {
         double rectangle_size = chess.getWidth() / n;
         GraphicsContext gc = chess.getGraphicsContext2D();
-        boolean[][] board = NQueensDFS.getBoard();
         int i;
         int j;
         for (i = 0; i < n; i++) {
