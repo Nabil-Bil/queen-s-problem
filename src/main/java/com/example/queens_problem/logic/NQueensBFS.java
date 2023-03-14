@@ -12,27 +12,27 @@ public class NQueensBFS extends NQueens {
 
     protected Result solve() {
         Queue<Node> open = new LinkedList<>();
-        int developedNodes=0;
+        int developedNodes = 0;
         boolean[][] initial_board = new boolean[n][n];
         open.offer(new Node(initial_board, 0));
         while (!open.isEmpty()) {
             Node node = open.poll();
-             developedNodes++;
+            developedNodes++;
             boolean[][] board = node.state;
             int c = node.depth;
-            if (c == n) {
-                if(isSafe(board)){
-                    return new Result(open.size()+ developedNodes,developedNodes,board);
-                }
-            } else {
-                for (int row = 0; row < n; row++) {
+            if (isSafe(board, n)) {
+                if (c == n) {
+                    return new Result(open.size() + developedNodes, developedNodes, board);
+                } else {
+                    for (int row = 0; row < n; row++) {
                         boolean[][] new_board = copyBoard(board);
                         new_board[row][c] = true;
                         open.offer(new Node(new_board, c + 1));
+                    }
                 }
             }
         }
-        return new Result(developedNodes,developedNodes,null);
+        return new Result(developedNodes, developedNodes, null);
     }
 
 

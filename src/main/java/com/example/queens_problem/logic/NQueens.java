@@ -10,51 +10,48 @@ public abstract class NQueens {
         this.n=n;
     }
 
-    protected static int evaluate(boolean[][] board) {
+    protected static int evaluate(boolean[][] board, int n) {
         int count = 0;
         int i,j;
         Queue<Queen> counted = new LinkedList<>();
-        for(int col = 0; col<4; col++)
+        for(int col = 0; col<n; col++)
         {
-            for(int row = 0; row<4; row++)
+            for(int row = 0; row<n; row++)
             {
                 if(board[row][col])
                 {
-                    for(i=col+1; i<4; i++)
+                    for(i=col+1; i<n; i++)
                     {
                         if(board[row][i])
                         {
                             if(!isCounted(counted,row,i))
                             {
-                                System.out.println("Col");
                                 count ++;
                                 counted.add(new Queen(row,i));
                                 break;
                             }
                         }
                     }
-                    for(i = row-1,j = col+1; i>0 && j<4;i--,j++)
+                    for(i = row-1,j = col+1; i>0 && j<n;i--,j++)
                     {
                         if(board[i][j])
                         {
                             //si la reine n'a pas déja été compté
                             if(!isCounted(counted,i,j))
                             {
-                                System.out.println("Diag sup");
                                 count ++;
                                 counted.add(new Queen(i,j));
                                 break;
                             }
                         }
                     }
-                    for(i = row+1,j = col+1; i<4 && j<4;i++,j++)
+                    for(i = row+1,j = col+1; i<n && j<n;i++,j++)
                     {
                         if(board[i][j])
                         {
                             //si la reine n'a pas déja été compté
                             if(!isCounted(counted,i,j))
                             {
-                                System.out.println("Diag inf");
                                 count ++;
                                 counted.add(new Queen(i,j));
                                 break;
@@ -63,10 +60,6 @@ public abstract class NQueens {
                     }
                 }
             }
-        }
-        for (Queen c : counted)
-        {
-            System.out.println(c);
         }
         if(count!=0)
         {
@@ -83,8 +76,8 @@ public abstract class NQueens {
         }
         return false;
     }
-    protected boolean isSafe(boolean[][] board) {
-        return  evaluate(board)==0;
+    protected boolean isSafe(boolean[][] board, int n) {
+        return  evaluate(board, n)==0;
     }
 
     protected boolean[][] copyBoard(boolean[][] original) {

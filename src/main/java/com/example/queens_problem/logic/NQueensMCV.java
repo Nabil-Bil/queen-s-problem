@@ -45,7 +45,7 @@ public class NQueensMCV extends NQueens {
             int c=node.depth;
             boolean[][] board=node.state;
             if (c == n) {
-                if(isSafe(board)){
+                if(isSafe(board,n)){
                     return new Result(open.size()+ developedNodes,developedNodes,board);
                 }
             } else {

@@ -21,19 +21,20 @@ public class NQueensDFS extends NQueens {
             closed.push(node);
             int c=node.depth;
             boolean[][] board=node.state;
-            if (c == n) {
-                if(isSafe(board)){
+            if(isSafe(board,n))
+            {
+                if (c == n)
+                {
                     return new Result(open.size()+ closed.size(),closed.size(),board);
-
                 }
-            } else {
-                for (int row = n-1; row >=0 ; row--) {
+                else {
+                    for (int row = n-1; row >=0 ; row--) {
                         boolean[][] new_board = copyBoard(board);
                         new_board[row][c] = true;
                         open.push(new Node(new_board,c+1));
+                    }
                 }
             }
-
         }
         return new Result( closed.size(),closed.size(),null);
     }
