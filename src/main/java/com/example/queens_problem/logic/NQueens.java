@@ -32,7 +32,7 @@ public abstract class NQueens {
                             }
                         }
                     }
-                    for(i = row-1,j = col+1; i>0 && j<n;i--,j++)
+                    for(i = row-1,j = col+1; i>=0 && j<n;i--,j++)
                     {
                         if(board[i][j])
                         {
@@ -65,6 +65,7 @@ public abstract class NQueens {
         {
             count ++;
         }
+        System.out.println(count);
         return count;
     }
     protected static boolean isCounted(Queue<Queen> counted, int row , int col) {
