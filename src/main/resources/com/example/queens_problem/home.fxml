@@ -45,14 +45,9 @@
          <Font name="Bauhaus 93" size="30.0" />
       </font>
    </Label>
-   <Label fx:id="time" layoutX="886.0" layoutY="678.0" text="0.00(S)" textFill="#969696">
+   <Label fx:id="time" layoutX="889.0" layoutY="678.0" text="0.00(S)" textFill="#969696">
       <font>
          <Font name="Bauhaus 93" size="30.0" />
-      </font>
-   </Label>
-   <Label fx:id="error" layoutX="693.0" layoutY="513.0" textFill="RED">
-      <font>
-         <Font size="18.0" />
       </font>
    </Label>
    <Label fx:id="mcv" layoutX="959.0" layoutY="282.0" onMouseClicked="#chooseAlgorithm" text="MCV">
@@ -63,7 +58,7 @@
          <Cursor fx:constant="HAND" />
       </cursor>
    </Label>
-   <Label layoutX="717.0" layoutY="637.0" text="Developed Node:">
+   <Label layoutX="721.0" layoutY="637.0" text="Developed Node:">
       <font>
          <Font name="Bauhaus 93" size="18.0" />
       </font>
@@ -95,5 +90,10 @@
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor>
+   </Label>
+   <Label fx:id="error" layoutX="758.0" layoutY="472.0" textFill="RED">
+      <font>
+         <Font name="Bauhaus 93" size="18.0" />
+      </font>
    </Label>
 </Pane>

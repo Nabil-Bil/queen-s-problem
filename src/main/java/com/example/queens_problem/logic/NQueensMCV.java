@@ -53,7 +53,7 @@ public class NQueensMCV extends NQueens {
                         boolean[][] new_board = copyBoard(board);
                         new_board[row][c] = true;
 //                        if (isSafe(new_board, n)) {
-                            open.offer(new Node(new_board, c + 1, c + 1, -calculateCost(new_board)));
+                        open.offer(new Node(new_board, c + 1, c + 1, -calculateCost(new_board)));
 //                        }
                     }
                 }
