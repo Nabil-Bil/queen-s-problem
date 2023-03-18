@@ -58,6 +58,9 @@ public class HomeController {
     private Label mcv;
 
     @FXML
+    protected  Label noc;
+
+    @FXML
     private Label developedNode;
 
     @FXML
@@ -97,6 +100,8 @@ public class HomeController {
             nQueens = new NQueensBFS(chessSize);
         }else if (selectedAlgorithm==Algorithm.MCV){
             nQueens=new NQueensMCV(chessSize);
+        }else{
+            nQueens=new NQueensNOC(chessSize);
         }
         Chess.drawChess(chessSize, chess);
         Result result=nQueens.solveAndGetResult();
@@ -124,6 +129,8 @@ public class HomeController {
 
         }else if (Objects.equals(id,"mcv")){
             selectedAlgorithm=Algorithm.MCV;
+        }else {
+            selectedAlgorithm=Algorithm.NOC;
         }
         circle.setLayoutX(x);
         circle.setLayoutY(y);

@@ -1,5 +1,7 @@
 package com.example.queens_problem;
 
+import com.example.queens_problem.logic.Result;
+
 enum ChessColor {
     White,
     Black
@@ -8,7 +10,8 @@ enum ChessColor {
 enum Algorithm{
     DFS,
     BFS,
-    MCV
+    MCV,
+    NOC
 }
 
 class Point {
@@ -35,4 +38,8 @@ class Point {
     public void setY(double y) {
         this.y = y;
     }
+}
+
+interface ResultFuncrion{
+    Result apply();
 }
