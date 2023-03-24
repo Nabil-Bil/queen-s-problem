@@ -7,11 +7,11 @@ enum ChessColor {
     Black
 }
 
-enum Algorithm{
+enum Algorithm {
     DFS,
     BFS,
-    MCV,
-    NOC
+    CCF,
+    NCH
 }
 
 class Point {
@@ -40,6 +40,6 @@ class Point {
     }
 }
 
-interface ResultFuncrion{
+interface ResultFuncrion {
     Result apply();
 }

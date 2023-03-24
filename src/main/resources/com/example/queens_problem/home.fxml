@@ -50,7 +50,7 @@
          <Font name="Bauhaus 93" size="30.0" />
       </font>
    </Label>
-   <Label fx:id="mcv" layoutX="959.0" layoutY="282.0" onMouseClicked="#chooseAlgorithm" text="MCV">
+   <Label fx:id="ccf" layoutX="959.0" layoutY="282.0" onMouseClicked="#chooseAlgorithm" text="CCF">
       <font>
          <Font name="Bauhaus 93" size="30.0" />
       </font>
@@ -83,7 +83,7 @@
          <Font name="Bauhaus 93" size="18.0" />
       </font>
    </Label>
-   <Label fx:id="noc" layoutX="960.0" layoutY="353.0" onMouseClicked="#chooseAlgorithm" text="NOC">
+   <Label fx:id="noc" layoutX="960.0" layoutY="353.0" onMouseClicked="#chooseAlgorithm" text="NCH">
       <font>
          <Font name="Bauhaus 93" size="30.0" />
       </font>

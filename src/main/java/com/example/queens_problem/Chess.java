@@ -82,8 +82,8 @@ public class Chess {
         return center;
     }
 
-    static public void clear(Canvas chess){
-        chess.getGraphicsContext2D().clearRect(0,0,chess.getWidth(),chess.getHeight());
+    static public void clear(Canvas chess) {
+        chess.getGraphicsContext2D().clearRect(0, 0, chess.getWidth(), chess.getHeight());
     }
 
     static private void drawQueen(GraphicsContext gc, ChessColor color, Point position, double size) {

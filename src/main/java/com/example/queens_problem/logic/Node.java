@@ -25,7 +25,7 @@ public class Node {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("F = ").append(this.getF()).append("\n");
+        stringBuilder.append(this.g).append(" + ").append(h).append(" = ").append(this.getF()).append("\n");
         for (boolean[] booleans : state) {
             for (int j = 0; j < state.length; j++) {
                 stringBuilder.append(booleans[j] ? "1 " : "0 ");

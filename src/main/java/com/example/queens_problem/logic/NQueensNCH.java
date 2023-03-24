@@ -1,37 +1,10 @@
 package com.example.queens_problem.logic;
 
-import java.util.*;
+import java.util.PriorityQueue;
 
-public class NQueensMCV extends NQueens {
-
-    public NQueensMCV(int n) {
+public class NQueensNCH extends NQueens {
+    public NQueensNCH(int n) {
         super(n);
-    }
-
-    public static int calculateCost(boolean[][] board) {
-        int n = board.length;
-        int cost = 0;
-
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = i + 1; j < n; j++) {
-                // If two queens are on the same row or diagonal
-                if (board[i][j] && (i == j || Math.abs(i - j) == Math.abs(getQueenCol(board, i) - getQueenCol(board, j)))) {
-                    cost++;
-                }
-            }
-        }
-
-        return cost;
-    }
-
-
-    private static int getQueenCol(boolean[][] board, int row) {
-        for (int j = 0; j < board[row].length; j++) {
-            if (board[row][j]) {
-                return j;
-            }
-        }
-        return -1;
     }
 
     @Override
@@ -42,6 +15,7 @@ public class NQueensMCV extends NQueens {
         open.offer(new Node(initial_board, 0, 0, 0));
         while (!open.isEmpty()) {
             Node node = open.poll();
+            System.out.println(node);
             developedNodes++;
             int c = node.depth;
             boolean[][] board = node.state;
@@ -52,9 +26,7 @@ public class NQueensMCV extends NQueens {
                     for (int row = 0; row < n; row++) {
                         boolean[][] new_board = copyBoard(board);
                         new_board[row][c] = true;
-//                        if (isSafe(new_board, n)) {
-                        open.offer(new Node(new_board, c + 1, c + 1, -calculateCost(new_board)));
-//                        }
+                        open.offer(new Node(new_board, c + 1, c + 1, -evaluate(new_board, n)));
                     }
                 }
             }
