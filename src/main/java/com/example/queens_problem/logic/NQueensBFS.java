@@ -20,7 +20,7 @@ public class NQueensBFS extends NQueens {
             developedNodes++;
             boolean[][] board = node.state;
             int c = node.depth;
-            if (isSafe(board, n)) {
+            if (isSafe(board)) {
                 if (c == n) {
                     return new Result(open.size() + developedNodes, developedNodes, board);
                 } else {

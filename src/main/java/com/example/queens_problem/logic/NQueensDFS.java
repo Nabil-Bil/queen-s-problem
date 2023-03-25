@@ -21,7 +21,7 @@ public class NQueensDFS extends NQueens {
             closed.push(node);
             int c = node.depth;
             boolean[][] board = node.state;
-            if (isSafe(board, n)) {
+            if (isSafe(board)) {
 
                 if (c == n) {
                     return new Result(open.size() + closed.size(), closed.size(), board);

@@ -19,14 +19,14 @@ public class NQueensNCH extends NQueens {
             developedNodes++;
             int c = node.depth;
             boolean[][] board = node.state;
-            if (isSafe(board, n)) {
+            if (isSafe(board)) {
                 if (c == n) {
                     return new Result(open.size() + developedNodes, developedNodes, board);
                 } else {
                     for (int row = 0; row < n; row++) {
                         boolean[][] new_board = copyBoard(board);
                         new_board[row][c] = true;
-                        open.offer(new Node(new_board, c + 1, c + 1, -evaluate(new_board, n)));
+                        open.offer(new Node(new_board, c + 1, c + 1, -evaluate(new_board)));
                     }
                 }
             }

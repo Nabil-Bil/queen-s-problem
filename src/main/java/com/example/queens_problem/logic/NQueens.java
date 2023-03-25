@@ -11,7 +11,7 @@ public abstract class NQueens {
         this.n = n;
     }
 
-    protected static int evaluate(boolean[][] board, int n) {
+    protected int evaluate(boolean[][] board) {
         int count = 0;
         int i, j;
         Queue<Queen> counted = new LinkedList<>();
@@ -56,7 +56,7 @@ public abstract class NQueens {
         return count;
     }
 
-    protected static boolean isCounted(Queue<Queen> counted, int row, int col) {
+    protected boolean isCounted(Queue<Queen> counted, int row, int col) {
         for (Queen c : counted) {
             if (c.row == row && c.col == col) {
                 return true;
@@ -65,8 +65,8 @@ public abstract class NQueens {
         return false;
     }
 
-    protected boolean isSafe(boolean[][] board, int n) {
-        return evaluate(board, n) == 0;
+    protected boolean isSafe(boolean[][] board) {
+        return evaluate(board) == 0;
     }
 
     protected boolean[][] copyBoard(boolean[][] original) {
