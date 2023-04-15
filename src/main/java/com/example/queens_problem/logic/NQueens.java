@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Queue;
 
 public abstract class NQueens {
+    enum Selection {
+        Elitist
+    }
+
     int n;
 
     public NQueens(int n) {

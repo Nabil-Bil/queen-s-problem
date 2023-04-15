@@ -15,10 +15,10 @@ public class Testing {
 //            printInCSV(29, 30, Algorithm.CCF);
 
 //            printSolutions(29, 30, Algorithm.CCF);
-//            printSolutions(4, 30, Algorithm.NCH);
+            printSolutions(30, 30, Algorithm.NCH);
 //            printSolutions(4, 21, Algorithm.DFS);
 //            printSolutions(23, 26, Algorithm.DFS);
-            printSolutions(4, 12, Algorithm.BFS);
+//            printSolutions(4, 12, Algorithm.BFS);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,6 +1,9 @@
 package com.example.queens_problem;
 
+import com.example.queens_problem.logic.Node;
 import com.example.queens_problem.logic.Result;
+
+import java.util.ArrayList;
 
 enum ChessColor {
     White,
@@ -11,7 +14,8 @@ enum Algorithm {
     DFS,
     BFS,
     CCF,
-    NCH
+    NCH,
+    GA
 }
 
 class Point {
@@ -42,4 +46,13 @@ class Point {
 
 interface ResultFuncrion {
     Result apply();
+}
+
+public class Utils {
+    public static Node[] toArray(ArrayList<Node> nodeArrayList) {
+        Node[] arr = new Node[nodeArrayList.size()];
+        arr = nodeArrayList.toArray(arr);
+        return arr;
+    }
+
 }

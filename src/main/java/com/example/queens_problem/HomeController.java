@@ -35,6 +35,9 @@ public class HomeController {
     private Label dfs;
 
     @FXML
+    private Label ga;
+
+    @FXML
     private Label time;
 
     @FXML
@@ -92,8 +95,10 @@ public class HomeController {
             nQueens = new NQueensBFS(chessSize);
         } else if (selectedAlgorithm == Algorithm.CCF) {
             nQueens = new NQueensCCF(chessSize);
-        } else {
+        } else if (selectedAlgorithm == Algorithm.NCH) {
             nQueens = new NQueensNCH(chessSize);
+        } else {
+            nQueens = new NQueensGA(chessSize);
         }
         Chess.drawChess(chessSize, chess);
         Result result = nQueens.solveAndGetResult();
@@ -121,8 +126,10 @@ public class HomeController {
 
         } else if (Objects.equals(id, "ccf")) {
             selectedAlgorithm = Algorithm.CCF;
-        } else {
+        } else if (Objects.equals(id, "nch")) {
             selectedAlgorithm = Algorithm.NCH;
+        } else {
+            selectedAlgorithm = Algorithm.GA;
         }
         circle.setLayoutX(x);
         circle.setLayoutY(y);

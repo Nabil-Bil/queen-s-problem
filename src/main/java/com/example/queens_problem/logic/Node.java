@@ -11,6 +11,13 @@ public class Node {
         this.depth = i;
     }
 
+    public Node(boolean[][] initialState, int i, int f) {
+        this.state = initialState;
+        this.depth = i;
+        this.g = 0;
+        this.h = f;
+    }
+
     public Node(boolean[][] initialState, int i, int g, int h) {
         this.state = initialState;
         this.depth = i;

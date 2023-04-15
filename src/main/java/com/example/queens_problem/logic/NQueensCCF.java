@@ -59,6 +59,7 @@ public class NQueensCCF extends NQueens {
         open.offer(new Node(initial_board, 0, 0, 0));
         while (!open.isEmpty()) {
             Node node = open.poll();
+            System.out.println(node);
             developedNodes++;
             int c = node.depth;
             boolean[][] board = node.state;
