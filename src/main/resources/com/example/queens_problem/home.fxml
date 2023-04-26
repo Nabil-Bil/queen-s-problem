@@ -11,7 +11,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.queens_problem.HomeController">
    <Ellipse fx:id="circle" fill="#1f93ff00" layoutX="1000.0" layoutY="155.0" radiusX="46.0" radiusY="24.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" />
-    <TextField fx:id="sizeTextField" layoutX="756.0" layoutY="455.0" prefHeight="30.0" prefWidth="487.0" promptText="Entrez la taille de l'echequier" text="4">
+    <TextField fx:id="sizeTextField" layoutX="756.0" layoutY="499.0" prefHeight="30.0" prefWidth="487.0" promptText="Entrez la taille de l'echequier" text="4">
       <font>
          <Font size="14.0" />
       </font></TextField>
@@ -45,7 +45,7 @@
          <Font name="Bauhaus 93" size="30.0" />
       </font>
    </Label>
-   <Label fx:id="time" layoutX="889.0" layoutY="693.0" text="0.00(S)" textFill="#969696">
+   <Label fx:id="time" layoutX="889.0" layoutY="620.0" text="0.00(S)" textFill="#969696">
       <font>
          <Font name="Bauhaus 93" size="30.0" />
       </font>
@@ -58,32 +58,32 @@
          <Cursor fx:constant="HAND" />
       </cursor>
    </Label>
-   <Label layoutX="721.0" layoutY="652.0" text="Developed Node:">
+   <Label fx:id="developedNodeText" layoutX="724.0" layoutY="666.0" text="Developed Node:">
       <font>
          <Font name="Bauhaus 93" size="18.0" />
       </font>
    </Label>
-   <Label layoutX="721.0" layoutY="601.0" text="Generated Node:">
+   <Label fx:id="generatedNodeText" layoutX="725.0" layoutY="703.0" text="Generated Node:">
       <font>
          <Font name="Bauhaus 93" size="18.0" />
       </font>
    </Label>
-   <Label fx:id="generatedNode" layoutX="886.0" layoutY="594.0" text="0" textFill="#969696">
+   <Label fx:id="generatedNode" layoutX="889.0" layoutY="696.0" text="0" textFill="#969696">
       <font>
          <Font name="Bauhaus 93" size="30.0" />
       </font>
    </Label>
-   <Label fx:id="developedNode" layoutX="889.0" layoutY="645.0" text="0" textFill="#969696">
+   <Label fx:id="developedNode" layoutX="889.0" layoutY="659.0" text="0" textFill="#969696">
       <font>
          <Font name="Bauhaus 93" size="30.0" />
       </font>
    </Label>
-   <Label layoutX="721.0" layoutY="700.0" text="Execution Time:">
+   <Label layoutX="724.0" layoutY="627.0" text="Execution Time:">
       <font>
          <Font name="Bauhaus 93" size="18.0" />
       </font>
    </Label>
-   <Label fx:id="noc" layoutX="971.0" layoutY="336.0" onMouseClicked="#chooseAlgorithm" text="NCH">
+   <Label fx:id="nch" layoutX="971.0" layoutY="336.0" onMouseClicked="#chooseAlgorithm" text="NCH">
       <font>
          <Font name="Bauhaus 93" size="30.0" />
       </font>
@@ -99,9 +99,25 @@
          <Cursor fx:constant="HAND" />
       </cursor>
    </Label>
-   <Label fx:id="error" layoutX="769.0" layoutY="504.0" prefWidth="0.0" textFill="RED">
+   <Label fx:id="pso" layoutX="974.0" layoutY="452.0" onMouseClicked="#chooseAlgorithm" text="PSO">
       <font>
-         <Font name="Bauhaus 93" size="18.0" />
+         <Font name="Bauhaus 93" size="30.0" />
+      </font>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
+   </Label>
+   <Label fx:id="change_params" layoutX="1059.0" layoutY="502.0" onMouseClicked="#changeParams" text="Change Parameters" visible="false">
+      <font>
+         <Font name="Bauhaus 93" size="21.0" />
+      </font>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
+   </Label>
+   <Label fx:id="error" layoutX="751.0" layoutY="569.0" textFill="RED">
+      <font>
+         <Font size="18.0" />
       </font>
    </Label>
 </Pane>

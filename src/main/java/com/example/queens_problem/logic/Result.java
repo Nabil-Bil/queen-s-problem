@@ -6,10 +6,21 @@ public class Result {
     public int developedNodes;
     public boolean[][] solution;
 
+    public int fitness;
+
 
     public Result(int generatedNodes, int developedNodes, boolean[][] solution) {
         this.generatedNodes = generatedNodes;
         this.developedNodes = developedNodes;
+        this.solution = solution;
+    }
+    public Result(boolean[][] solution,int fitness){
+        this.fitness=fitness;
+        this.solution = solution;
+    }
+    public Result(double executionTime,boolean[][] solution,int fitness){
+        this.executionTime=executionTime;
+        this.fitness=fitness;
         this.solution = solution;
     }
 

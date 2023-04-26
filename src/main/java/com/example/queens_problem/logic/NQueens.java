@@ -14,6 +14,57 @@ public abstract class NQueens {
     public NQueens(int n) {
         this.n = n;
     }
+    public static int calculateFitness(boolean[][] board) {
+        int n = board.length;
+        int fitness = 0;
+        for (int row = 0; row < n; row++) {
+            for (int col = 0; col < n; col++) {
+                if (board[row][col]) {
+                    // Compter les attaques pour chaque reine
+                    fitness += countAttacks(board, row, col);
+                }
+            }
+        }
+        return fitness / 2;
+    }
+    private static int countAttacks(boolean[][] board, int row, int col) {
+        int n = board.length;
+        int attacks = 0;
+
+        // Diagonales descendantes
+        for (int i = 1; i < n; i++) {
+            if ((row + i < n) && (col + i < n) && board[row + i][col + i]) {
+                attacks++;
+            }
+            if ((row - i >= 0) && (col + i < n) && board[row - i][col + i]) {
+                attacks++;
+            }
+            if ((row + i < n) && (col - i >= 0) && board[row + i][col - i]) {
+                attacks++;
+            }
+            if ((row - i >= 0) && (col - i >= 0) && board[row - i][col - i]) {
+                attacks++;
+            }
+        }
+
+        // Lignes et colonnes
+        for (int i = 1; i < n; i++) {
+            if ((row + i < n) && board[row + i][col]) {
+                attacks++;
+            }
+            if ((row - i >= 0) && board[row - i][col]) {
+                attacks++;
+            }
+            if ((col + i < n) && board[row][col + i]) {
+                attacks++;
+            }
+            if ((col - i >= 0) && board[row][col - i]) {
+                attacks++;
+            }
+        }
+
+        return attacks;
+    }
 
     protected int evaluate(boolean[][] board) {
         int count = 0;
@@ -87,8 +138,8 @@ public abstract class NQueens {
         double begin = System.currentTimeMillis();
         Result result = solve();
         double end = System.currentTimeMillis();
-        double executionTime = (end - begin) / 1000;
-        return new Result(executionTime, result.generatedNodes, result.developedNodes, result.solution);
+        result.executionTime= (end - begin) / 1000;
+        return result;
 
     }
 

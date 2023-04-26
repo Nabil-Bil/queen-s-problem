@@ -15,7 +15,8 @@ enum Algorithm {
     BFS,
     CCF,
     NCH,
-    GA
+    GA,
+    PSO
 }
 
 class Point {
@@ -42,17 +43,4 @@ class Point {
     public void setY(double y) {
         this.y = y;
     }
-}
-
-interface ResultFuncrion {
-    Result apply();
-}
-
-public class Utils {
-    public static Node[] toArray(ArrayList<Node> nodeArrayList) {
-        Node[] arr = new Node[nodeArrayList.size()];
-        arr = nodeArrayList.toArray(arr);
-        return arr;
-    }
-
 }

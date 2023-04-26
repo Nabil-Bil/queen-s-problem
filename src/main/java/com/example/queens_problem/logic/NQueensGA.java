@@ -1,66 +1,14 @@
 package com.example.queens_problem.logic;
 
 import java.util.*;
-
-import com.example.queens_problem.Utils;
-
 public class NQueensGA extends NQueens {
-
-    public NQueensGA(int n) {
+    int populationSize;
+    int maxGenerations;
+    int rate;
+    public NQueensGA(int n,int populationSize,int maxGenerations) {
         super(n);
-    }
-
-    public static int calculateFitness(boolean[][] board) {
-        int n = board.length;
-        int fitness = 0;
-        for (int row = 0; row < n; row++) {
-            for (int col = 0; col < n; col++) {
-                if (board[row][col]) {
-                    // Compter les attaques pour chaque reine
-                    fitness += countAttacks(board, row, col);
-                }
-            }
-        }
-        return fitness / 2;
-    }
-
-    private static int countAttacks(boolean[][] board, int row, int col) {
-        int n = board.length;
-        int attacks = 0;
-
-        // Diagonales descendantes
-        for (int i = 1; i < n; i++) {
-            if ((row + i < n) && (col + i < n) && board[row + i][col + i]) {
-                attacks++;
-            }
-            if ((row - i >= 0) && (col + i < n) && board[row - i][col + i]) {
-                attacks++;
-            }
-            if ((row + i < n) && (col - i >= 0) && board[row + i][col - i]) {
-                attacks++;
-            }
-            if ((row - i >= 0) && (col - i >= 0) && board[row - i][col - i]) {
-                attacks++;
-            }
-        }
-
-        // Lignes et colonnes
-        for (int i = 1; i < n; i++) {
-            if ((row + i < n) && board[row + i][col]) {
-                attacks++;
-            }
-            if ((row - i >= 0) && board[row - i][col]) {
-                attacks++;
-            }
-            if ((col + i < n) && board[row][col + i]) {
-                attacks++;
-            }
-            if ((col - i >= 0) && board[row][col - i]) {
-                attacks++;
-            }
-        }
-
-        return attacks;
+        this.populationSize=populationSize;
+        this.maxGenerations=maxGenerations;
     }
 
     private ArrayList<Node> generateRandomPopulation(int populationSize) {
@@ -93,13 +41,11 @@ public class NQueensGA extends NQueens {
 
     }
 
-    private ArrayList<Node> selection(ArrayList<Node> population, int rate, Selection method) {
+    private ArrayList<Node> selection(ArrayList<Node> population, int rate) {
         int size = (population.size() * rate) / 100;
         ArrayList<Node> selectedIndividuals = new ArrayList<>(size);
 
-        switch (method) {
-            case Elitist -> selectedIndividuals = elitistSelection(population, size);
-        }
+        selectedIndividuals = elitistSelection(population, size);
 
 
         Collections.shuffle(selectedIndividuals);
@@ -198,9 +144,6 @@ public class NQueensGA extends NQueens {
 
     @Override
     protected Result solve() {
-        int populationSize = 5000;
-        int maxGenerations = 1000;
-        int rate = 70;
         // Generate initial random population
         ArrayList<Node> population = generateRandomPopulation(populationSize);
         int generationCount = 0;
@@ -212,12 +155,11 @@ public class NQueensGA extends NQueens {
 
             // Check if the best individual is a solution
             if (population.get(0).getF() == 0) {
-                System.out.println(population.get(0).getF());
-                return new Result(0, 0, population.get(0).state);
+                return new Result(population.get(0).state,population.get(0).getF());
             }
 
             // Select the best individuals for crossover
-            ArrayList<Node> selectedPopulation = selection(population, rate, Selection.Elitist);
+            ArrayList<Node> selectedPopulation = selection(population, rate);
 
             // Perform crossover on selected individuals
             ArrayList<Node> children = crossoverPopulation(selectedPopulation);
@@ -227,7 +169,6 @@ public class NQueensGA extends NQueens {
             generationCount++;
         }
         population.sort(Comparator.comparingInt(Node::getF));
-        System.out.println(population.get(0).getF());
-        return new Result(0, 0, population.get(0).state);
+        return new Result(population.get(0).state,population.get(0).getF());
     }
 }
