@@ -20,13 +20,25 @@ public class Particle implements Cloneable{
     public Particle clone() {
         try {
             Particle clone = (Particle) super.clone();
-            clone.position=this.position;
+            clone.position=this.position.clone();
             clone.fitnessValue=this.fitnessValue;
-            clone.pbest=this.pbest;
-            clone.velocity=this.velocity;
+            clone.pbest=this.pbest.clone();
+            clone.velocity=this.velocity.clone();
             return clone;
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();
         }
+    }
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        System.out.println("fitness : "+this.getFitnessValue());
+        for (boolean[] booleans : position) {
+            for (int j = 0; j < position.length; j++) {
+                stringBuilder.append(booleans[j] ? "1 " : "0 ");
+            }
+            stringBuilder.append("\n");
+        }
+        return stringBuilder.toString();
     }
 }

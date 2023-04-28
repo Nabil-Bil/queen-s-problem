@@ -15,7 +15,6 @@ public abstract class NQueens {
         this.n = n;
     }
     protected int calculateFitness(boolean[][] board) {
-        int n = board.length;
         int fitness = 0;
         for (int row = 0; row < n; row++) {
             for (int col = 0; col < n; col++) {
@@ -27,8 +26,7 @@ public abstract class NQueens {
         }
         return fitness / 2;
     }
-    protected int countAttacks(boolean[][] board, int row, int col) {
-        int n = board.length;
+    protected  int countAttacks(boolean[][] board, int row, int col) {
         int attacks = 0;
 
         // Diagonales descendantes

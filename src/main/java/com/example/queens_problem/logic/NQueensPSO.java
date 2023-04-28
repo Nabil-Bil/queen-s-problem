@@ -92,7 +92,7 @@ public class NQueensPSO extends NQueens{
         ArrayList<boolean[][]> tabuList=new ArrayList<>();
         Particle bestNeighbour=particle.clone();
         while (iter<maxIterations){
-                ArrayList<Particle> neighbours;
+                ArrayList<Particle> neighbours=null;
                 neighbours=generateNeighbours(bestNeighbour,tabuList);
                 neighbours.sort(Comparator.comparingInt(Particle::getFitnessValue));
                 Particle neighbour=neighbours.get(0);
@@ -163,7 +163,7 @@ public class NQueensPSO extends NQueens{
         this.iterationNumber=500;
         this.populationSize=500;
         double tabuSearchRate=0.2;
-        double mutationRate=0.;
+        double mutationRate=0.1;
         ArrayList<Particle> particles= generateRandomParticles(populationSize);
         int iteration=0;
         particles.sort(Comparator.comparingInt(Particle::getFitnessValue));
@@ -176,17 +176,17 @@ public class NQueensPSO extends NQueens{
                 newParticle.velocity=calculateVelocity(particles.get(i),gbest);
                 newParticle.position=calculateNewPosition(newParticle);
                 newParticle.fitnessValue=calculateFitness(newParticle.position);
-                if(Math.random()<tabuSearchRate){
-                    Particle bestNeighbour=rechercheTabou(newParticle,100);
-                    bestNeighbour.fitnessValue=calculateFitness(bestNeighbour.position);
-                    if(bestNeighbour.getFitnessValue()<newParticle.getFitnessValue()){
-                        newParticle=bestNeighbour;
-                    }
-                }
                 if(Math.random()<mutationRate){
                     mutate(newParticle);
                     newParticle.fitnessValue=calculateFitness(newParticle.position);
                 }
+                if(Math.random()<tabuSearchRate){
+                    Particle bestNeighbour=rechercheTabou(newParticle,100);
+                    if(bestNeighbour.getFitnessValue()<newParticle.getFitnessValue()){
+                        newParticle=bestNeighbour;
+                    }
+                }
+
                 if(newParticle.fitnessValue<calculateFitness(newParticle.pbest)){
                     newParticle.pbest=newParticle.position;
                 }
@@ -199,6 +199,9 @@ public class NQueensPSO extends NQueens{
         }
         return new Result( gbest.position,gbest.getFitnessValue());
     }
+
+
+
 
 
 }
