@@ -1,9 +1,6 @@
 package com.example.queens_problem;
 
 import com.example.queens_problem.logic.Node;
-import com.example.queens_problem.logic.Result;
-
-import java.util.ArrayList;
 
 enum ChessColor {
     White,

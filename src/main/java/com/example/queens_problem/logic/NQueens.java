@@ -14,7 +14,7 @@ public abstract class NQueens {
     public NQueens(int n) {
         this.n = n;
     }
-    public static int calculateFitness(boolean[][] board) {
+    protected int calculateFitness(boolean[][] board) {
         int n = board.length;
         int fitness = 0;
         for (int row = 0; row < n; row++) {
@@ -27,7 +27,7 @@ public abstract class NQueens {
         }
         return fitness / 2;
     }
-    private static int countAttacks(boolean[][] board, int row, int col) {
+    protected int countAttacks(boolean[][] board, int row, int col) {
         int n = board.length;
         int attacks = 0;
 

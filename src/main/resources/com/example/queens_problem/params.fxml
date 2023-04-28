@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Slider fx:id="populationSlider" layoutX="214.0" layoutY="85.0" majorTickUnit="100.0" max="9999.0" min="10.0" minorTickCount="10" prefHeight="14.0" prefWidth="282.0" value="10.0" />
@@ -38,6 +37,17 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+      </Label>
+      <Slider fx:id="selectionRateSlider" layoutX="214.0" layoutY="217.0" prefHeight="14.0" prefWidth="282.0" />
+      <Label layoutX="43.0" layoutY="214.0" text="Selection Rate">
+         <font>
+            <Font name="Bauhaus 93" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="selectionRateLabel" layoutX="504.0" layoutY="214.0" text="60%">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
       </Label>
    </children>
 </Pane>

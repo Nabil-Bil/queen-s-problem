@@ -79,6 +79,7 @@ public class HomeController {
     int populationSize=100;
     int maxGenerations=100;
 
+    int rate=60;
 
     @FXML
     void onRunButtonClick(MouseEvent event) {
@@ -113,7 +114,7 @@ public class HomeController {
         } else if (selectedAlgorithm == Algorithm.NCH) {
             nQueens = new NQueensNCH(chessSize);
         } else if(selectedAlgorithm == Algorithm.GA){
-            nQueens = new NQueensGA(chessSize,populationSize,maxGenerations);
+            nQueens = new NQueensGA(chessSize,populationSize,maxGenerations,rate);
         }else{
             nQueens=new NQueensPSO(chessSize);
         }
@@ -186,15 +187,24 @@ public class HomeController {
         stage.show();
         Slider generationSlider = (Slider) scene.lookup("#generationSlider");
         Slider populationSlider = (Slider) scene.lookup("#populationSlider");
+        Slider selectionRateSlider = (Slider) scene.lookup("#selectionRateSlider");
         Label generationLabel=(Label) scene.lookup("#generationLabel");
+        Label selectionRateLabel=(Label) scene.lookup("#selectionRateLabel");
         Label populationLabel=(Label) scene.lookup("#populationLabel");
         generationSlider.setValue(maxGenerations);
         populationSlider.setValue(populationSize);
+        selectionRateSlider.setValue(rate);
         generationLabel.setText(String.valueOf(maxGenerations));
         populationLabel.setText(String.valueOf(populationSize));
+        selectionRateLabel.setText(rate +"%");
         generationSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             maxGenerations= newValue.intValue();
             generationLabel.setText(String.valueOf(maxGenerations));
+
+        });
+        selectionRateSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            rate= newValue.intValue();
+            selectionRateLabel.setText(rate +"%");
 
         });
         populationSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
